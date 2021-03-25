@@ -82,9 +82,9 @@ class Car {
         this.tank += gallons;
     }
     drive(distance) {
-        if (this.milesPerGallon >= distance / this.milesPerGallon) {
+        if (this.tank >= this.tank * this.milesPerGallon / distance) {
             this.odometer += distance;
-            this.tank -= distance / this.milesPerGallon;
+            this.tank -= this.milesPerGallon / distance;
         } else {
             return `I ran out of fuel at ${this.odometer} miles!`;
         };
@@ -192,9 +192,20 @@ class Student extends Lambdasian {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor {
+    constructor(obj) {
+        super(obj);
+        this.gradClassName = obj.gradClassName;
+        this.favInstructor = obj.favInstructor;
+    }
+    standUp(channel) {
+        return `${this.name} announces to ${channel}, @channel standy times!`
+    }
+    debugsCode(student, subj) {
+        return `${this.name} debugs ${student.name}'s code on ${subj}`
+    }
 }
+
 /*
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.

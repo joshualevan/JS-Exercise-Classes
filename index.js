@@ -48,10 +48,10 @@ class Person {
     }
     eat(someFood) {
         this.stomach.length < 10 ? this.stomach.push(someFood) : console.log(`${this.name} is too full to accept more food`);
-    };
+    }
     poop() {
         this.stomach = [];
-    };
+    }
     toString() {
         return `${this.name}, ${this.age}`;
     }
@@ -80,7 +80,7 @@ class Car {
     }
     fill(gallons) {
         this.tank += gallons;
-    };
+    }
     drive(distance) {
         if (this.milesPerGallon >= distance / this.milesPerGallon) {
             this.odometer += distance;
@@ -129,8 +129,20 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
+class Instructor extends Lambdasian {
+    constructor(obj) {
+        super(obj);
+        this.speciality = obj.speciality;
+        this.favLanguage = obj.favLanguage;
+        this.catchPhrase = obj.catchPhrase;
 
+    }
+    demo(subj) {
+        return `Today we are learning about ${subj}`;
+    }
+    grade(student, subj) {
+        return `${this.name} receives a perfect score on ${subj}`;
+    }
 }
 /*
   TASK 5
@@ -147,9 +159,25 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian {
+    constructor(obj) {
+        super(obj);
+        this.previousBackground = obj.previousBackground;
+        this.className = obj.className;
+        this.favSubjects = obj.favSubjects;
+    }
+    listSubjects() {
+        let subjs = this.favSubjects.join(', ');
+        return `Loving ${subjs}!`;
+    }
+    PRAssignment(subj) {
+        return `${this.name} has sumbitted a PR for ${subj}`;
+    }
+    sprintChallenge(subj) {
+        return `${this.name} has begun sprint challenge on ${subj}`;
+    }
 }
+
 
 /*
   TASK 6
